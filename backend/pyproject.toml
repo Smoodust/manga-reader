@@ -1,0 +1,21 @@
+[project]
+name = "manga-ocr-backend"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Smoodust",email = "42073101+Smoodust@users.noreply.github.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "manga-ocr @ git+https://github.com/kha-white/manga-ocr.git",
+    "fastapi[standard] (>=0.115.6,<0.116.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
