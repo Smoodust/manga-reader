@@ -16,7 +16,7 @@ function Main() {
             <div className="h-screen w-screen flex flex-col">
                 <div className="navbar bg-base-100">
                     <div className="flex-1">
-                        <a className="btn btn-ghost text-xl">daisyUI</a>
+                        <a className="btn btn-ghost text-xl">MangaOCR</a>
                     </div>
                     <div className="flex-none">
                         <button className="btn btn-ghost" onClick={() => setDialogVisibility(true)}>Загрузить мангу</button>
@@ -26,7 +26,7 @@ function Main() {
                     !file ? <NoMangaScreen setDialogVisibility={setDialogVisibility} /> : <MangaDraw file={file} />
                 }
             </div>
-            <ImageOpenDialog isDialogVisible={dialogVisibility} onClose={onCloseDialog} setFile={setFile} />
+            <ImageOpenDialog isDialogVisible={dialogVisibility} setDialogVisibility={setDialogVisibility} onClose={onCloseDialog} setFile={setFile} />
         </>
     )
 }

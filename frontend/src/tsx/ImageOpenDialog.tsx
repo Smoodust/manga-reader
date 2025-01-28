@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-function ImageOpenDialog({isDialogVisible, onClose, setFile} : {isDialogVisible : boolean, onClose : () => void, setFile: React.Dispatch<React.SetStateAction<File | null>>}) {
+function ImageOpenDialog({isDialogVisible, setDialogVisibility, onClose, setFile} : {isDialogVisible : boolean, setDialogVisibility: React.Dispatch<React.SetStateAction<boolean>>, onClose : () => void, setFile: React.Dispatch<React.SetStateAction<File | null>>}) {
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     useEffect(() => {
@@ -15,6 +15,7 @@ function ImageOpenDialog({isDialogVisible, onClose, setFile} : {isDialogVisible 
     function onFileChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (!e.currentTarget.files) return;
         setFile(e.currentTarget.files[0]);
+        setDialogVisibility(false);
     }
 
     return (
