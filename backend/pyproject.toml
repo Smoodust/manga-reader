@@ -9,7 +9,9 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "manga-ocr @ git+https://github.com/kha-white/manga-ocr.git",
-    "fastapi[standard] (>=0.115.6,<0.116.0)"
+    "fastapi[standard] (>=0.115.6,<0.116.0)",
+    "onnxruntime (>=1.20.1,<2.0.0)",
+    "ultralytics (>=8.3.68,<9.0.0)"
 ]
 
 
