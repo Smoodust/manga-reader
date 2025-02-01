@@ -1,0 +1,44 @@
+services:
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8001", "--reload"]
+    ports:
+      - "8000:8000"
+    #depends_on:
+    #  - redis
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: production
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+  
+#  frontend_in_development:
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#      target: development
+#    ports:
+#      - "3000:3000"
+#    volumes:
+#      - ./frontend:/app
+#      - ./frontend/node_modules:/app/node_modules
+#    depends_on:
+#      - backend
