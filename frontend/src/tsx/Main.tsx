@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import ImageOpenDialog from "./ImageOpenDialog";
 import NoMangaScreen from "./NoMangaScreen";
 import MangaDraw from "./MangaDraw";
