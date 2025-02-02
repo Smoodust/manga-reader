@@ -24,7 +24,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: production
+      target: build
     ports:
       - "80:80"
     depends_on:
