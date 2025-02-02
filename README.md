@@ -1,9 +1,9 @@
 # Manga Reader
 
 ## Table of Contents
-- [About](#-about)
-- [Certification](#-certification)
-- [How to Build](#-how-to-build)
+- [About](#about)
+- [Setup Instructions](#setup-instructions)
+- [License](#license)
 - [Documentation](#-documentation)
 - [Feedback and Contributions](#-feedback-and-contributions)
 - [License](#-license)
