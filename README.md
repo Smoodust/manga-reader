@@ -1,13 +1,11 @@
 # Manga Reader
 
 ## Table of Contents
+- [Screenshots](#screenshots)
 - [About](#about)
 - [Setup Instructions](#setup-instructions)
 - [License](#license)
-- [Documentation](#-documentation)
-- [Feedback and Contributions](#-feedback-and-contributions)
-- [License](#-license)
-- [Contacts](#%EF%B8%8F-contacts)
+- [Contact](#contact)
 
 ## Screenshots
 
