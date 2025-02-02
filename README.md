@@ -24,7 +24,7 @@ Manga Reader is a full-stack application designed to upload images, scan them, a
 # Open a terminal and ensure Git is installed
 
 # Clone the repository
-git clone https://github.com/your-username/manga-reader.git
+git clone https://github.com/Smoodust/manga-reader.git
    
 # Navigate to the project directory
 cd manga-reader
