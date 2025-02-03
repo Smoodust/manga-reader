@@ -13,6 +13,7 @@ dependencies = [
     "manga-ocr (>=0.1.14,<0.2.0)",
     "torch (>=2.6.0,<3.0.0)",
     "opencv-python-headless (>=4.11.0.86,<5.0.0.0)",
+    "valkey[libvalkey] (>=6.0.2,<7.0.0)",
 ]
 
 

@@ -21,6 +21,11 @@ class YOLOv11:
         self.confidence_thres = confidence_thres
         self.iou_thres = iou_thres
 
+        self.session = ort.InferenceSession(
+            self.onnx_model, providers=["CPUExecutionProvider"]
+        )
+        self.input_name = self.session.get_inputs()[0].name
+
     def __call__(self, img: Image.Image):
         """
         Performs inference using an ONNX model and returns the output image with drawn detections.
@@ -28,24 +33,12 @@ class YOLOv11:
         Returns:
             output_img: The output image with drawn detections.
         """
-        # Create an inference session using the ONNX model and specify execution providers
-        session = ort.InferenceSession(
-            self.onnx_model, providers=["CPUExecutionProvider"]
-        )
-
-        # Get the model inputs
-        model_inputs = session.get_inputs()
-
-        # Store the shape of the input for later use
-        input_shape = model_inputs[0].shape
-        input_width = input_shape[2]
-        input_height = input_shape[3]
 
         # Preprocess the image data
-        img_height, img_width = img.size
+        img_width, img_height = img.size
 
         # Resize the image to match the input shape
-        img = img.resize((input_width, input_height))
+        img = img.resize((640, 640))
 
         # Normalize the image data by dividing it by 255.0
         image_data = np.array(img) / 255.0
@@ -57,9 +50,7 @@ class YOLOv11:
         image_data = np.expand_dims(image_data, axis=0).astype(np.float32)
 
         # Run inference using the preprocessed image data
-        outputs = session.run(None, {model_inputs[0].name: image_data})
-
-        del session
+        outputs = self.session.run(None, {self.input_name: image_data})
 
         # Transpose and squeeze the output to match the expected shape
         outputs = np.transpose(np.squeeze(outputs))
@@ -70,10 +61,6 @@ class YOLOv11:
         # Lists to store the bounding boxes, scores, and class IDs of the detections
         boxes = []
         scores = []
-
-        # Calculate the scaling factors for the bounding box coordinates
-        x_factor = img_width / input_width
-        y_factor = img_height / input_height
 
         # Iterate over each row in the outputs array
         for i in range(rows):
@@ -87,14 +74,14 @@ class YOLOv11:
                 x, y, w, h = outputs[i][0], outputs[i][1], outputs[i][2], outputs[i][3]
 
                 # Calculate the scaled coordinates of the bounding box
-                left = int((x - w / 2) * x_factor)
-                top = int((y - h / 2) * y_factor)
-                width = int(w * x_factor)
-                height = int(h * y_factor)
+                left = int(x - w / 2)
+                top = int(y - h / 2)
+                w = int(w)
+                h = int(h)
 
                 # Add the class ID, score, and box coordinates to the respective lists
                 scores.append(max_score)
-                boxes.append([left, top, width, height])
+                boxes.append([left, top, w, h])
 
         # Apply non-maximum suppression to filter out overlapping bounding boxes
         indices = cv2.dnn.NMSBoxes(boxes, scores, self.confidence_thres, self.iou_thres)
@@ -103,13 +90,17 @@ class YOLOv11:
         boxes = [boxes[i] for i in indices]
         scores = [float(scores[i]) for i in indices]
 
+        # Calculate the scaling factors for the bounding box coordinates
+        x_factor = img_width / 640
+        y_factor = img_height / 640
+
         return [
             {
                 "conf": score,
-                "x": box[0],
-                "y": box[1],
-                "w": box[2],
-                "h": box[3],
+                "x": box[0] * x_factor,
+                "y": box[1] * y_factor,
+                "w": box[2] * x_factor,
+                "h": box[3] * y_factor,
             }
             for box, score in zip(boxes, scores)
         ]
