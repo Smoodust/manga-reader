@@ -17,7 +17,7 @@ function MangaDraw({ file } : {file : File}) {
         var data = new FormData();
         data.append('file', file);
 
-        fetch("http://localhost:8000/api/add", {
+        fetch("/api/add", {
             method: "POST",
             body: data
         }).then(response => response.json())
@@ -27,7 +27,7 @@ function MangaDraw({ file } : {file : File}) {
     useEffect(() => {
         if (!ids) return;
 
-        fetch("http://localhost:8000/api/detect/"+ids, {
+        fetch("/api/detect/"+ids, {
             method: "POST"
         }).then(response => response.json())
         .then(box => setBboxs(box));

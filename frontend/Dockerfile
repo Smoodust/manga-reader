@@ -29,7 +29,7 @@ CMD ["npm", "start"]
 FROM nginx:alpine AS production
 
 # Copy the production build artifacts from the build stage
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
 
 #Copy nginx configuration
 COPY nginx/nginx.conf /etc/nginx/nginx.conf

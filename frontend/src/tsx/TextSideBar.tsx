@@ -5,7 +5,7 @@ function TextSideBar({ ids, index_text } : { ids: string, index_text: number }) 
     const transcriptionRef = useRef<HTMLParagraphElement>(null);
 
     useEffect(() => {
-        fetch("http://localhost:8000/api/ocr/"+ids+"/"+index_text, {
+        fetch("/api/ocr/"+ids+"/"+index_text, {
             method: "POST"
         }).then(response => response.json())
         .then(text => {
