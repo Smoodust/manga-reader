@@ -1,6 +1,5 @@
 from PIL import Image
 from manga_ocr import MangaOcr
-from ultralytics import YOLO
 
 from io import BytesIO
 import functools
@@ -9,6 +8,7 @@ from typing import Annotated
 from fastapi import FastAPI, File, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
+from backend.ocr import YOLOv11
 
 import uuid
 
@@ -22,7 +22,7 @@ def init_ocr_model():
 
 @functools.cache
 def init_detection_model():
-    return YOLO("detection.onnx", task="detect")
+    return YOLOv11("detection.onnx", 0.3, 0.1)
 
 
 @asynccontextmanager
@@ -63,18 +63,7 @@ async def add_image(file: Annotated[bytes, File()], background_tasks: Background
     stream = BytesIO(file)
     image = Image.open(stream)
     ids = str(uuid.uuid4())
-    results = init_detection_model()(image, iou=0.1)
-    boxes = results[0].boxes
-    boxes = [
-        {
-            "conf": conf,
-            "x": box[0] - box[2] / 2,
-            "y": box[1] - box[3] / 2,
-            "w": box[2],
-            "h": box[3],
-        }
-        for conf, box in zip(boxes.conf.tolist(), boxes.xywh.tolist())
-    ]
+    boxes = init_detection_model()(image)
     data[ids] = {"image": image, "bbox": boxes, "ocrs": []}
     background_tasks.add_task(ocr_image, ids)
     return ids

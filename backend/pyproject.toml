@@ -8,10 +8,11 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "manga-ocr @ git+https://github.com/kha-white/manga-ocr.git",
     "fastapi[standard] (>=0.115.6,<0.116.0)",
     "onnxruntime (>=1.20.1,<2.0.0)",
-    "ultralytics (>=8.3.68,<9.0.0)"
+    "manga-ocr (>=0.1.14,<0.2.0)",
+    "torch (>=2.6.0,<3.0.0)",
+    "opencv-python-headless (>=4.11.0.86,<5.0.0.0)",
 ]
 
 
@@ -21,3 +22,12 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 package-mode = false
+
+[[tool.poetry.source]]
+name = "pytorch_cpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"
+
+
+[tool.poetry.dependencies]
+torch = {source = "pytorch_cpu"}

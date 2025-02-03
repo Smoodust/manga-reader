@@ -1,0 +1,6 @@
+.env/
+**/__pycache__/
+*.jpg
+poetry.lock
+pyprohect.toml
+README.md
