@@ -1,46 +1,50 @@
-# Manga Reader
+```markdown
+# Читалка манги
 
-## Table of Contents
-- [Screenshots](#screenshots)
-- [About](#about)
-- [Setup Instructions](#setup-instructions)
-- [License](#license)
-- [Contact](#contact)
+[🇷🇺Русский](https://github.com/Smoodust/manga-reader/) | [🇬🇧English](https://github.com/Smoodust/manga-reader/blob/main/README_en.md)
+ 
+## Содержание
+- [Скриншоты](#скриншоты)
+- [О проекте](#о-проекте)
+- [Инструкции по установке](#инструкции-по-установке)
+- [Лицензия](#лицензия)
+- [Контакты](#контакты)
 
-## Screenshots
+## Скриншоты
 
-![Screenshot 1](path/to/screenshot1.png)
-![Screenshot 2](path/to/screenshot2.png)
+![Скриншот 1](https://github.com/Smoodust/manga-reader/blob/main/screen_1.png)
+![Скриншот 2](https://github.com/Smoodust/manga-reader/blob/main/screen_2.png)
 
-## About
+## О проекте
 
-Manga Reader is a full-stack application designed to upload images, scan them, and extract dialogues in Japanese. The project consists of a frontend built with React and a backend powered by FastAPI. This tool is perfect for manga enthusiasts who want to digitize and analyze their favorite manga dialogues.
+Читалка манги — это полноценное приложение, предназначенное для загрузки изображений, их сканирования и извлечения диалогов на японском языке. Проект состоит из фронтенда, написанного на React, и бэкенда, работающего на FastAPI. Этот инструмент идеально подходит для любителей манги, которые хотят оцифровать и анализировать диалоги из своих любимых манг.
 
-## Setup Instructions
+## Инструкции по установке
 
 ```shell
-# Open a terminal and ensure Git is installed
+# Откройте терминал и убедитесь, что Git установлен
 
-# Clone the repository
+# Клонируйте репозиторий
 git clone https://github.com/Smoodust/manga-reader.git
-   
-# Navigate to the project directory
+
+# Перейдите в директорию проекта
 cd manga-reader
 
-# Start docker
+# Запустите Docker
 docker-compose up
 
 ```
 
-Site would be on `http://localhost:80`.
+Сайт будет доступен по адресу `http://localhost:80`.
 
-## License
+## Лицензия
 
-This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for more details.
+Этот проект лицензирован под лицензией Apache 2.0. Подробнее см. в файле [LICENSE](LICENSE).
 
-## Contact
+## Контакты
 
-For any questions or support, feel free to reach out to us:
+По любым вопросам или для поддержки обращайтесь к нам:
 
 - Email: rustyburing@yandex.ru
 - Telegram: @Pluton0
+```
