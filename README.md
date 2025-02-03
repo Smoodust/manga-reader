@@ -1,4 +1,3 @@
-```markdown
 # Читалка манги
 
 [🇷🇺Русский](https://github.com/Smoodust/manga-reader/) | [🇬🇧English](https://github.com/Smoodust/manga-reader/blob/main/README_en.md)
@@ -47,4 +46,3 @@ docker-compose up
 
 - Email: rustyburing@yandex.ru
 - Telegram: @Pluton0
-```
