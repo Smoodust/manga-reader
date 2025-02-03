@@ -14,7 +14,7 @@
 
 ## About
 
-Manga Reader is a full-stack application designed to upload images, scan them, and extract dialogues in Japanese. The project consists of a frontend built with React and a backend powered by FastAPI. This tool is perfect for manga enthusiasts who want to digitize and analyze their favorite manga dialogues.
+Manga Reader is a full-stack application designed to upload, scan, and extract Japanese dialogues from manga images. Built with a React frontend and a FastAPI backend, this tool enables manga enthusiasts to digitize and analyze their favorite manga dialogues efficiently. It's particularly useful for understanding unfamiliar words or kanji characters.
 
 ## Setup Instructions
 
@@ -32,7 +32,7 @@ docker-compose up
 
 ```
 
-Site would be on `http://localhost:80`.
+Site would be on `http://localhost:80`. Ensure you have internet access, as the backend service will download models. The build process should take less than 10 minutes. If it occasionally crashes, simply restart the Docker container.
 
 ## License
 
